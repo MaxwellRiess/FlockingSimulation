@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flocking Visualization</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>  
+    <button id="toggle-menu-button" type="button">Simulation Parameters</button>
+    </nav>
+    <canvas id="flocking-canvas"></canvas>
+    <div id="parameter-menu" class="collapse">
+        <div id="menu">
+        <label for="numBoids">Number of Boids: </label>
+        <input type="number" id="numBoids" value="100" min="0" step="1">
+        <br>
+        <label for="maxSpeed">Max Speed: </label>
+        <input type="number" id="maxSpeed" value="1" min="0" step="0.1">
+        <br>
+        <label for="maxForce">Max Force: </label>
+        <input type="number" id="maxForce" value="0.004" min="0" step="0.01">
+        <br>    
+        <label for="avoidanceRadius">avoidanceRadius: </label>
+        <input type="number" id="avoidanceRadius" value="100" min="0" step="1">    
+        <br>
+        <label for="boidSize">boidSize: </label>
+        <input type="number" id="boidSize" value="5" min="0" step="1">  
+        <br>
+        <label for="perceptionRadius">perceptionRadius: </label>
+        <input type="number" id="perceptionRadius" value="80" min="0" step="1"> 
+        <br>
+        <label for="alignmentWeight">alignmentWeight: </label>
+        <input type="number" id="alignmentWeight" value="10" min="0" step="1"> 
+        <br>
+        <label for="cohesionWeight">cohesionWeight: </label>
+        <input type="number" id="cohesionWeight" value="7" min="0" step="1"> 
+        <br>
+        <label for="separationWeight">separationWeight: </label>
+        <input type="number" id="separationWeight" value="10" min="0" step="1"> 
+        <br>
+        <label for="avoidanceWeight">avoidanceWeight: </label>
+        <input type="number" id="avoidanceWeight" value="2.5" min="0" step="0.1"> 
+    </div>
+    </div>
+</body>
+</html>
+    <script src="scripts.js"></script>
+</body>
+</html>
