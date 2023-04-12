@@ -161,13 +161,13 @@
         numBoids: 200,
         boidSize: 5,
         maxSpeed: 1.1,
-        maxForce: .004, // Lower the maxForce value to limit acceleration
-        perceptionRadius: 80,
-        avoidanceRadius: 100,
-        alignmentWeight: 10,
-        cohesionWeight: 7.5,
+        maxForce: .018, // Lower the maxForce value to limit acceleration
+        perceptionRadius: 17,
+        avoidanceRadius: 20,
+        alignmentWeight: 15,
+        cohesionWeight: 11,
         separationWeight: 10,
-        avoidanceWeight: 2.5,
+        avoidanceWeight: 1.1,
         boundary: 1,
         wrapAround: true,
     };
