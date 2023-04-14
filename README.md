@@ -5,7 +5,9 @@ A flocking simulation implimented with the HTMLS canvas API and vanilla javascri
 The simulation is dymanically controllable by the parameter menu
 
 **Number of Boids**: The total number of boids (individual agents) present in the simulation.
+
 **Max Speed**: The maximum speed a boid can travel in the simulation.
+
 **Max Force**: The maximum force applied to a boid when accelerating. Higher values result in quicker changes in direction or speed.
 **Avoidance Radius**: The distance within which a boid tries to actively avoid other boids to prevent collisions or overlapping.
 **Boid Size**: The size (radius) of each boid displayed in the simulation.
