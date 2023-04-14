@@ -34,7 +34,7 @@
             }
 
             draw() {
-            const emoji = ">"; // Replace this with your desired emoji
+            const emoji = ">"; // Replace this with your desired character / emoji
             const size = simulationParameters.boidSize;
 
             ctx.save();
@@ -172,18 +172,18 @@
         }
 
         const simulationParameters = {
-        numBoids: 200,
+        numBoids: 150,
         boidSize: 5,
-        maxSpeed: 1.1,
-        maxForce: .018, // Lower the maxForce value to limit acceleration
-        perceptionRadius: 20,
+        maxSpeed: 1.5,
+        maxForce: .18, // Lower the maxForce value to limit acceleration
+        perceptionRadius: 17,
         avoidanceRadius: 20,
         alignmentWeight: 15,
         cohesionWeight: 11,
         separationWeight: 10,
-        avoidanceWeight: 1.1,
-        boundary: 30,
-        wrapAround: false,
+        avoidanceWeight: 1,
+        boundary: 0,
+        wrapAround: true,
     };
 
         const boids = [];
@@ -290,6 +290,21 @@
                 simulationParameters.avoidanceWeight = value;
             }
         });
+
+        document.getElementById("boundary").addEventListener("input", (event) => {
+            const value = parseFloat(event.target.value);
+            if (!isNaN(value)) {
+                simulationParameters.boundary = value;
+            }
+        }); 
+
+        const wrapAroundCheckbox = document.getElementById("wrapAround");
+        wrapAroundCheckbox.checked = simulationParameters.wrapAround;
+        
+        wrapAroundCheckbox.addEventListener("change", () => {
+        simulationParameters.wrapAround = wrapAroundCheckbox.checked;
+        });
+
 
         const toggleMenuButton = document.getElementById('toggle-menu-button');
         const parameterMenu = document.getElementById('parameter-menu');
