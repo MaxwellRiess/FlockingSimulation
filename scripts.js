@@ -61,6 +61,12 @@
                 let avoidance = { x: 0, y: 0 };
                 let count = 0;
 
+                // Keep boids within the boundary
+                if (this.x < simulationParameters.boundary) this.vx += simulationParameters.maxForce * 2;
+                if (this.x > canvas.width - simulationParameters.boundary) this.vx -= simulationParameters.maxForce * 2;
+                if (this.y < simulationParameters.boundary) this.vy += simulationParameters.maxForce * 2;
+                if (this.y > canvas.height - simulationParameters.boundary) this.vy -= simulationParameters.maxForce * 2;
+
                 for (const other of boids) {
                     if (other !== this) {
                         const d = Math.hypot(this.x - other.x, this.y - other.y);
@@ -91,25 +97,34 @@
                     separation.x = avoidance.x;
                     separation.y = avoidance.y;
 
-                    // Normalize and scale alignment vector
                     const alignmentMag = Math.hypot(alignment.x, alignment.y);
-                    alignment.x = (alignment.x / alignmentMag) * simulationParameters.maxSpeed;
-                    alignment.y = (alignment.y / alignmentMag) * simulationParameters.maxSpeed;
+                    const cohesionMag = Math.hypot(cohesion.x, cohesion.y);
+                    const separationMag = Math.hypot(separation.x, separation.y);
+                    const avoidanceMag = Math.hypot(avoidance.x, avoidance.y);
+
+                    // Normalize and scale alignment vector
+                    if (alignmentMag !== 0) {
+                        alignment.x = (alignment.x / alignmentMag) * simulationParameters.maxSpeed;
+                        alignment.y = (alignment.y / alignmentMag) * simulationParameters.maxSpeed;
+                    }
 
                     // Normalize and scale cohesion vector
-                    const cohesionMag = Math.hypot(cohesion.x, cohesion.y);
-                    cohesion.x = (cohesion.x / cohesionMag) * simulationParameters.maxSpeed;
-                    cohesion.y = (cohesion.y / cohesionMag) * simulationParameters.maxSpeed;
+                    if (cohesionMag !== 0) {
+                        cohesion.x = (cohesion.x / cohesionMag) * simulationParameters.maxSpeed;
+                        cohesion.y = (cohesion.y / cohesionMag) * simulationParameters.maxSpeed;
+                    }
 
                     // Normalize and scale separation vector
-                    const separationMag = Math.hypot(separation.x, separation.y);
-                    separation.x = (separation.x / separationMag) * simulationParameters.maxSpeed;
-                    separation.y = (separation.y / separationMag) * simulationParameters.maxSpeed;
+                    if (separationMag !== 0) {
+                        separation.x = (separation.x / separationMag) * simulationParameters.maxSpeed;
+                        separation.y = (separation.y / separationMag) * simulationParameters.maxSpeed;
+                    }
 
-                                        // Normalize and scale avoidance vector
-                    const avoidanceMag = Math.hypot(avoidance.x, avoidance.y);
-                    avoidance.x = (avoidance.x / avoidanceMag) * simulationParameters.maxSpeed;
-                    avoidance.y = (avoidance.y / avoidanceMag) * simulationParameters.maxSpeed;
+                    // Normalize and scale avoidance vector
+                    if (avoidanceMag !== 0) {
+                        avoidance.x = (avoidance.x / avoidanceMag) * simulationParameters.maxSpeed;
+                        avoidance.y = (avoidance.y / avoidanceMag) * simulationParameters.maxSpeed;
+                    }
 
                     // Apply weights to the vectors
                     alignment.x *= simulationParameters.alignmentWeight;
@@ -139,21 +154,20 @@
 
                 // Update position
                 this.x += this.vx;
-                 this.y += this.vy;
+                this.y += this.vy;
 
-                 // Keep boids within the boundary
-                    if (this.x < simulationParameters.boundary) this.vx += simulationParameters.maxForce;
-                    if (this.x > canvas.width - simulationParameters.boundary) this.vx -= simulationParameters.maxForce;
-                    if (this.y < simulationParameters.boundary) this.vy += simulationParameters.maxForce;
-                    if (this.y > canvas.height - simulationParameters.boundary) this.vy -= simulationParameters.maxForce;
 
-                // Wrap around the canvas
-                if (simulationParameters.wrapAround) {
+                if (!simulationParameters.wrapAround) {
+                    if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+                } else {
                     if (this.x < -simulationParameters.boidSize) this.x = canvas.width + simulationParameters.boidSize;
                     if (this.x > canvas.width + simulationParameters.boidSize) this.x = -simulationParameters.boidSize;
                     if (this.y < -simulationParameters.boidSize) this.y = canvas.height + simulationParameters.boidSize;
                     if (this.y > canvas.height + simulationParameters.boidSize) this.y = -simulationParameters.boidSize;
                 }
+
+                
             }
         }
 
@@ -162,14 +176,14 @@
         boidSize: 5,
         maxSpeed: 1.1,
         maxForce: .018, // Lower the maxForce value to limit acceleration
-        perceptionRadius: 17,
+        perceptionRadius: 20,
         avoidanceRadius: 20,
         alignmentWeight: 15,
         cohesionWeight: 11,
         separationWeight: 10,
         avoidanceWeight: 1.1,
-        boundary: 1,
-        wrapAround: true,
+        boundary: 30,
+        wrapAround: false,
     };
 
         const boids = [];
