@@ -25,12 +25,12 @@ body, html {
             text-align: left;
         }
         #menu {
-            position: fixed;
+            position: absolute;
             bottom: 50px;
-            right: 10px;
+            right: 25px;
             background-color: rgba(255, 255, 255, 0.8);, , 
-            padding: 10px;
-            border-radius: 5px;
+            padding: 50px;
+            border-radius: 20px;
             z-index: 2;
         }
 
@@ -52,6 +52,15 @@ body, html {
 
         .collapse.show {
             display: block;
+        }
+
+        .parameter-menu input[type="range"] {
+          writing-mode: bt-lr; /* For old browsers */
+          -webkit-appearance: slider-vertical; /* For WebKit browsers */
+          width: 150px;
+          height: 30px;
+          margin: 0;
+          padding: 0;
         }
 
 </style>

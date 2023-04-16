@@ -221,6 +221,7 @@
 
         document.getElementById("numBoids").addEventListener("input", (event) => {
             const value = parseInt(event.target.value, 10);
+            document.getElementById("numBoidsValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.numBoids = value;
                 initBoids();
@@ -229,6 +230,7 @@
 
         document.getElementById("boidSize").addEventListener("input", (event) => {
             const value = parseInt(event.target.value, 10);
+            document.getElementById("boidSizeValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.boidSize = value;
                 initBoids();
@@ -237,6 +239,7 @@
 
         document.getElementById("maxSpeed").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("maxSpeedValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.maxSpeed = value;
             }
@@ -244,6 +247,7 @@
 
         document.getElementById("maxForce").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("maxForceValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.maxForce = value;
             }
@@ -251,6 +255,7 @@
 
         document.getElementById("avoidanceRadius").addEventListener("input", (event) => {
             const value = parseInt(event.target.value);
+            document.getElementById("avoidanceRadiusValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.avoidanceRadius = value;
             }
@@ -258,6 +263,7 @@
 
         document.getElementById("perceptionRadius").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("perceptionRadiusValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.perceptionRadius = value;
             }
@@ -265,6 +271,7 @@
 
         document.getElementById("alignmentWeight").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("alignmentWeightValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.alignmentWeight = value;
             }
@@ -272,6 +279,7 @@
 
         document.getElementById("cohesionWeight").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("cohesionWeightValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.cohesionWeight = value;
             }
@@ -279,6 +287,7 @@
 
         document.getElementById("separationWeight").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("separationWeightValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.separationWeight = value;
             }
@@ -286,6 +295,7 @@
 
         document.getElementById("avoidanceWeight").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("avoidanceWeightValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.avoidanceWeight = value;
             }
@@ -293,6 +303,7 @@
 
         document.getElementById("boundary").addEventListener("input", (event) => {
             const value = parseFloat(event.target.value);
+            document.getElementById("boundaryValue").textContent = value;
             if (!isNaN(value)) {
                 simulationParameters.boundary = value;
             }
